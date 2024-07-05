@@ -1,16 +1,23 @@
 #pragma once
 #include "includes.h"
 
-string GenName(string Name) {
+int GetName() {  
+	// this is function to generate a name of your file.
+	// this is need to do your program more unique.
+	// you can create more than one txt file. 
+	// use function to_string in main page of program, to mutate in string.
+	// thats need because function GenName() return INT type;
+
+
 	srand(time(0));
 
-	string Fi = " ";
-	string Se = " ";
-	string Th = " ";
-	string Fo = " ";
-	string Fv = " ";
+	long Fi = 0;
+	long Se = 0;
+	long Th = 0;
+	long Fo = 0;
+	long Fv = 0;
 
-	string Grab[] = { "abc" , "bcd", "yui", "iop", "qwe" };
+	long Grab[] = {111 , 222, 333, 444, 555};
 
 	int Fi_op = rand() % 20;
 	int Se_op = rand() % 20;
@@ -38,7 +45,47 @@ string GenName(string Name) {
 		Se = Grab[0];
 	}
 
-	Name = (Fi + Se + Th + Fo + Fv);
+	if (Th_op < 10) {
+		Th = Grab[2];
+	}
+	else if (Th_op > 10) {
+		Th = Grab[3];
+	}
+	else if (Th_op == 10) {
+		Th = Grab[0];
+	}
+
+	if (Fo_op < 10) {
+		Fo = Grab[4];
+	}
+	else if (Fo_op > 10) {
+		Fo = Grab[2];
+	}
+	else if (Fo_op == 10) {
+		Fo = Grab[0];
+	}
+
+	if (Fi_op < 10) {
+		Fi = Grab[4];
+	}
+	else if (Fi_op > 10) {
+		Fi = Grab[1];
+	}
+	else if (Fi_op == 10) {
+		Fi = Grab[2];
+	}
+	
+	
+	long Name = (Fi + Se + Th + Fo + Fv);
 
 	return Name;
+}
+
+void Get_Help() {
+	cout << "Welcome to my programm, everything was create just for fun. Thats simply DataBase like program" << endl;
+	cout << "'/wrt' to write something in your file" << endl;
+	cout << "/'brk' to close command line" << endl;
+	cout << "'/clo' to close program" << endl;
+
+
 }
