@@ -27,7 +27,7 @@ int main() {
 			Stat.IsOpen = false;
 			Stat.Close = false;
 
-			string ArrMan[] = { "/wrt", "/brk", "/clo"}; // initialization for actions with program 
+			string ArrMan[] = { "/wrt", "/brk", "/clo", "/help"}; // initialization for actions with program 
 
 			Actions FirstL;
 			cin >> FirstL.Command;
@@ -35,16 +35,23 @@ int main() {
 			if (FirstL.Command == ArrMan[0]) {
 
 			}
+
 			else if (FirstL.Command == ArrMan[1]) {
 
 			}
+
 			else if (FirstL.Command == ArrMan[2]) {
 
 			}
 
-			if (Stat.Writed == true) {
-				break;
+			else if (FirstL.Command == ArrMan[3]) {
+
 			}
+
+			else {
+				cout << endl << endl << "invalid command" << endl << endl;
+			}
+
 		}
 	}
 }

@@ -83,6 +83,7 @@ int GetName() {
 
 void Get_Help() {
 	cout << "Welcome to my programm, everything was create just for fun. Thats simply DataBase like program" << endl;
+	cout << "'/help' go get list of all commands" << endl;
 	cout << "'/wrt' to write something in your file" << endl;
 	cout << "/'brk' to close command line" << endl;
 	cout << "'/clo' to close program" << endl;
