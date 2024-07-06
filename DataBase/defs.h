@@ -1,5 +1,6 @@
 #pragma once
 #include "includes.h"
+using namespace std;
 
 int GetName() {  
 	// this is function to generate a name of your file.
@@ -76,17 +77,7 @@ int GetName() {
 	}
 	
 	
-	long Name = (Fi + Se + Th + Fo + Fv);
+	long Name = (Fi + Se + Th + Fo + Fv + (rand() % 1000));
 
 	return Name;
-}
-
-void Get_Help() {
-	cout << "Welcome to my programm, everything was create just for fun. Thats simply DataBase like program" << endl;
-	cout << "'/help' go get list of all commands" << endl;
-	cout << "'/wrt' to write something in your file" << endl;
-	cout << "/'brk' to close command line" << endl;
-	cout << "'/clo' to close program" << endl;
-
-
 }
