@@ -6,5 +6,6 @@
 #include <conio.h>
 #include <string>
 #include <time.h>
+#include <conio.h>
 
 #include "defs.h"
