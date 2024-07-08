@@ -32,6 +32,8 @@ void Get_Exit() {// function to abort programm
 
 int main() {
 	while (true) {
+		Get_CLS();
+
 		while (true) {
 			//
 			long name = GetName(); // giving a name to txt file
@@ -102,10 +104,12 @@ int main() {
 			else if (FirstL.Command == ArrMan[4]) { // algorithm to function of read and find in file
 				Get_CLS();
 				Actions SlineRd;
+
 				string pathP = "Page/";
 				string pathS;
-				string pathF = (pathP + pathS + ".txt");
-				ifstream fileToWrite;
+				string pathF;
+
+				ifstream fileToRead;
 				
 				string ComArray[] = { "/start", "/find", "/brk" }; // list of command
 				
@@ -115,14 +119,22 @@ int main() {
 					cin >> SlineRd.Command;
 					cout << "enter name of your file." << endl;
 					cin >> pathS;
+
+					string pathF = (pathP + pathS + ".txt");
 					
 					if (SlineRd.Command == ComArray[0]) {
-						fileToWrite.open(pathF);
+						fileToRead.open(pathF);
 
 						try {
-							if (fileToWrite.is_open()) {
+							if (fileToRead.is_open()) {
+								string txt;
+								
+								fileToRead >> txt;
+								cout << endl << txt << endl;
 
-
+								if (txt == "") {
+									cout << endl << endl << "Text not found" << endl << endl;
+								}
 							}
 						}
 						catch (const std::exception&) {
@@ -136,7 +148,7 @@ int main() {
 						break;
 					}
 					else {
-						cout << endl << endl << endl << "invalid command" << endl << endl << endl;
+						cout << endl << endl << "invalid command" << endl << endl;
 					}
 				}
 			}
@@ -157,7 +169,6 @@ int main() {
 			else {
 				cout << endl << endl << "invalid command" << endl << endl;
 			}
-
 		}
 	}
 	return 0;
