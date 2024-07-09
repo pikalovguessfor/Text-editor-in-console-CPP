@@ -11,7 +11,7 @@ class Actions {
 
 void Get_Help() { // function to get help with commands
 	cout << endl << endl << endl;
-	cout << "Welcome to my programm, everything was create just for fun. Thats simply DataBase like program" << endl;
+	cout << "Commands:" << endl;
 	cout << "'/help' go get list of all commands" << endl;
 	cout << "'/wrt' to write something in your file" << endl;
 	cout << "'/find' to find info for special symbol, and just see what inside the file" << endl;
@@ -60,23 +60,34 @@ int main() {
 					if (FileWrite.is_open()) { // check to open file
 						while (true)
 						{
-							Get_CLS();
 
 							cout << "path: -> main -> write in file" << endl << endl;
 							cout << "What do next? '/start' to enter text, '/brk' to leave command line" << endl;
 							
 							Actions SecondL;
 							cin >> SecondL.Command;
+
+							bool writedIN = false;
+
 							if (SecondL.Command == "/start") { // start input in file
-								cout << endl << endl << "enter your text" << endl;
-
-
-								cin >> SecondL.input;
 								
+								cout << endl << endl << "enter your text" << endl;
+								
+								cin >> SecondL.input;
 								FileWrite << SecondL.input;
-
 								cout << endl << endl << endl;
+
+								if (SecondL.input != "") {
+									writedIN = true;
+								}
+								if (writedIN == true) {
+									cout << endl << endl << "text writed succesfully" << endl << endl;
+								}
+								else {
+									cout << endl << "text is empty" << endl;
+								}
 							}
+							
 							else if (SecondL.Command == ArrMan[1]) {
 								FileWrite.close();
 								Get_CLS();
@@ -120,13 +131,17 @@ int main() {
 					cout << "enter name of your file." << endl;
 					cin >> pathS;
 
-					string pathF = (pathP + pathS + ".txt");
+					pathF = (pathP + pathS + ".txt");
 					
 					if (SlineRd.Command == ComArray[0]) {
+						cout << endl << "---------------------------------------------------------------------------------------------" << endl;
+
 						fileToRead.open(pathF);
 
 						try {
+							bool readed = false;
 							if (fileToRead.is_open()) {
+
 								string txt;
 								
 								fileToRead >> txt;
@@ -135,6 +150,15 @@ int main() {
 								if (txt == "") {
 									cout << endl << endl << "Text not found" << endl << endl;
 								}
+								if (txt != "") {
+									readed = true;
+								}
+								if (readed == true) {
+									fileToRead.close()
+								}
+							}
+							else {
+								cout << endl << endl << "file didnt found" << endl << endl;
 							}
 						}
 						catch (const std::exception&) {
@@ -142,6 +166,29 @@ int main() {
 						}
 					}
 					else if (SlineRd.Command == ComArray[1]) {
+						cout << endl << "---------------------------------------------------------------------------------------------" << endl;
+
+						try{
+							string symbol
+
+							cout << endl << endl << "enter symbol to find" << endl << endl;
+							cin >> symbol;
+
+							cout << endl << endl << "enter name of your file" << endl << endl;
+							cin >> pathS;
+
+							pathF = (pathP + pathS + ".txt");
+							fileToRead.open(pathF);
+
+							while (getline(fileToRead, symbol)) {
+								
+
+							}
+
+						}
+						catch (const std::exception&) {
+
+						}
 
 					}
 					else if (SlineRd.Command == ComArray[2]) {
