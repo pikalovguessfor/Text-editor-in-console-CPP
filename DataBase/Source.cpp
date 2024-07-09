@@ -128,13 +128,13 @@ int main() {
 					cout << "Path: -> main -> find" << endl << endl;
 					cout << "'/start' to simple read file, '/find' to find a symbol in file, '/brk' to exit from this command line" << endl;
 					cin >> SlineRd.Command;
-					cout << "enter name of your file." << endl;
-					cin >> pathS;
-
-					pathF = (pathP + pathS + ".txt");
 					
 					if (SlineRd.Command == ComArray[0]) {
 						cout << endl << "---------------------------------------------------------------------------------------------" << endl;
+						cout << "enter name of your file." << endl;
+						cin >> pathS;
+
+						pathF = (pathP + pathS + ".txt");
 
 						fileToRead.open(pathF);
 
@@ -154,7 +154,7 @@ int main() {
 									readed = true;
 								}
 								if (readed == true) {
-									fileToRead.close()
+									fileToRead.close();
 								}
 							}
 							else {
@@ -165,11 +165,14 @@ int main() {
 							cout << endl << endl << endl << "file didnt found" << endl << endl << endl;
 						}
 					}
-					else if (SlineRd.Command == ComArray[1]) {
+
+					else if (SlineRd.Command == ComArray[1]) { // algorith to find a symbols in file
 						cout << endl << "---------------------------------------------------------------------------------------------" << endl;
 
 						try{
-							string symbol
+							char symbol;
+							char text[510000]; //initializing array of text. max size of text is (512000) symbols
+							bool loopOperator = false; // operator for main loop.
 
 							cout << endl << endl << "enter symbol to find" << endl << endl;
 							cin >> symbol;
@@ -178,11 +181,42 @@ int main() {
 							cin >> pathS;
 
 							pathF = (pathP + pathS + ".txt");
-							fileToRead.open(pathF);
+							if (pathF != "") {
 
-							while (getline(fileToRead, symbol)) {
-								
+								fileToRead.open(pathF);
 
+								if (fileToRead.is_open()) {
+
+									while (loopOperator == false) { // 
+										fileToRead >> text; //input file in array of text
+										long numbersSym = 0;
+
+										for (int i = 0; i < (text[510000]); i++) {
+											for (text[i]; i < text[510000]; i++) {
+
+												if (i == '-' or i == '[' or i == ']' or i == '(' or i == ')' or i == '#' or i == '@' or i == '*' or i == '%' or i == '&') { //checker to special symbols
+													numbersSym = numbersSym + 1;
+
+												}
+											}
+										}
+										if (numbersSym > 0) {
+											cout << endl << numbersSym << " " << "-" << " " << "numbers of special symbols in text";
+										}
+										else if (numbersSym == 0) {
+											cout << endl << numbersSym << " " << "-" << " " << "numbers of special symbols in text";
+										}
+										
+										loopOperator = true;
+									}
+								}
+								else { // I NEED MORE CHECK
+									cout << endl << endl << "file cant be opened" << endl << endl;
+								}
+
+							}
+							else { // I NEED MORE CHECK
+								cout << endl << endl << "invalid name of file" << endl << endl;
 							}
 
 						}
