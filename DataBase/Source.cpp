@@ -130,7 +130,6 @@ int main() {
 				cin >> SlineRd.Command;
 
 				if (SlineRd.Command == ComArray[0]) {
-					cout << endl << "---------------------------------------------------------------------------------------------" << endl;
 
 					cout << "enter name of your file." << endl;
 					cin >> pathS;
@@ -168,8 +167,7 @@ int main() {
 				}
 
 				else if (SlineRd.Command == ComArray[1]) { // algorithm to find a symbols in file
-					cout << endl << "---------------------------------------------------------------------------------------------" << endl;
-
+				
 					try {
 
 						char text[10000]; //initializing array of text. max size of text is (10000) symbols
