@@ -10,8 +10,6 @@ struct ioClass { // special class to manipulate with input-output proccedures
 	
 	string Command;
 	string input;
-	
-
 };
 
 int main() {
@@ -32,8 +30,9 @@ int main() {
 
 		if (FirstL.Command == ArrMan[0]) {
 			Get_CLS();
-			ofstream FileWrite;
 			ioClass SecondL;
+
+			ofstream FileWrite;
 
 			FileName = ("Page/" + FileName);
 
@@ -43,15 +42,18 @@ int main() {
 				cout << "what next? '/path' - to write in file with path, '/unpath' - to write in file wthout path" << endl;
 				cin >> SecondL.Command;
 				
-				if (SecondL.Command == arrWrtCom[0]){
-					string pathP = "Page/";
-					string pathS;
-					string pathF = "/txt";
-				
+				if (SecondL.Command == arrWrtCom[0]){ // write inside file with path
+					ioClass insidePathWrt_;
+
+					string pathP = "Page/"; // first part of path to file
+					string pathS;			// second part of path to file
+					string pathF = "/txt";  // third part of path to file
 				
 				}
 
 				else if (SecondL.Command == arrWrtCom[1]) {
+					ioClass insidePathWrt;
+
 					try {
 						FileWrite.open(FileName); // try to open file
 
