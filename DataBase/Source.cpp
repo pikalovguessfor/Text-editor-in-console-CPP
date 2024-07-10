@@ -232,7 +232,7 @@ int main() {
 				Get_Help();
 			}
 
-			else if (FirstL.Command == ArrMan[6]) {
+			else if (FirstL.Command == ArrMan[5]) {
 				Get_CLS();
 			}
 
