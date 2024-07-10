@@ -36,80 +36,80 @@ int main() {
 
 			FileName = ("Page/" + FileName);
 
-			string arrWrtCom[] = { "/path", "/unpath", "/brk"};
+			string arrWrtCom[] = { "/path", "/unpath", "/brk" };
 
-				cout << "path: -> main -> write in file" << endl << endl;
-				cout << "what next? '/path' - to write in file with path, '/unpath' - to write in file wthout path" << endl;
-				cin >> SecondL.Command;
-				
-				if (SecondL.Command == arrWrtCom[0]){ // write inside file with path
-					ioClass insidePathWrt_;
+			cout << "path: -> main -> write in file" << endl << endl;
+			cout << "what next? '/path' - to write in file with path, '/unpath' - to write in file wthout path" << endl;
+			cin >> SecondL.Command;
 
-					string pathP = "Page/"; // first part of path to file
-					string pathS;			// second part of path to file
-					string pathF = "/txt";  // third part of path to file
-				
-				}
+			if (SecondL.Command == arrWrtCom[0]) { // write inside file with path
+				ioClass insidePathWrt_;
 
-				else if (SecondL.Command == arrWrtCom[1]) {
-					ioClass insidePathWrt;
+				string pathP = "Page/"; // first part of path to file
+				string pathS;			// second part of path to file
+				string pathF = "/txt";  // third part of path to file
 
-					try {
-						FileWrite.open(FileName); // try to open file
+			}
 
-						if (FileWrite.is_open()) { // check to open file
-							while (true){
+			else if (SecondL.Command == arrWrtCom[1]) {
+				ioClass insidePathWrt;
 
-								cout << "path: -> main -> write in file -> unpath" << endl << endl;
-								cout << "What do next? '/start' to enter text, '/brk' to leave command line" << endl;
+				try {
+					FileWrite.open(FileName); // try to open file
 
-								cin >> SecondL.Command;
+					if (FileWrite.is_open()) { // check to open file
+						while (true) {
 
-								bool writedIN = false;
+							cout << "path: -> main -> write in file -> unpath" << endl << endl;
+							cout << "What do next? '/start' to enter text, '/brk' to leave command line" << endl;
 
-								if (SecondL.Command == "/start") { // start input in file
+							cin >> SecondL.Command;
 
-									cout << endl << endl << "enter your text" << endl;
+							bool writedIN = false;
 
-									cin >> SecondL.input;
-									FileWrite << SecondL.input;
-									cout << endl << endl << endl;
+							if (SecondL.Command == "/start") { // start input in file
 
-									if (SecondL.input != "") {
-										writedIN = true;
-									}
-									if (writedIN == true) {
-										cout << endl << endl << "text writed succesfully" << endl << endl;
-									}
-									else {
-										cout << endl << "text is empty" << endl;
-									}
+								cout << endl << endl << "enter your text" << endl;
+
+								cin >> SecondL.input;
+								FileWrite << SecondL.input;
+								cout << endl << endl << endl;
+
+								if (SecondL.input != "") {
+									writedIN = true;
 								}
-
-								else if (SecondL.Command == ArrMan[1]) {
-									FileWrite.close();
-									Get_CLS();
-									break;
+								if (writedIN == true) {
+									cout << endl << endl << "text writed succesfully" << endl << endl;
 								}
 								else {
-									cout << endl << "invalid command" << endl;
+									cout << endl << "text is empty" << endl;
 								}
-
 							}
-						}
-						else {
-							cout << endl << endl;
-							cout << "cant open file...";
-							cout << endl << endl;
+
+							else if (SecondL.Command == ArrMan[1]) {
+								FileWrite.close();
+								Get_CLS();
+								break;
+							}
+							else {
+								cout << endl << "invalid command" << endl;
+							}
+
 						}
 					}
-					catch (const char) {
+					else {
 						cout << endl << endl;
-						cout << "something went wrong";
-						cout << endl;
+						cout << "cant open file...";
+						cout << endl << endl;
 					}
 				}
+				catch (const char) {
+					cout << endl << endl;
+					cout << "something went wrong";
+					cout << endl;
+				}
 			}
+		}
 
 		else if (FirstL.Command == ArrMan[4]) { // algorithm to function of read and find in file
 			Get_CLS();
@@ -167,7 +167,7 @@ int main() {
 				}
 
 				else if (SlineRd.Command == ComArray[1]) { // algorithm to find a symbols in file
-				
+
 					try {
 
 						char text[10000]; //initializing array of text. max size of text is (10000) symbols
@@ -251,3 +251,4 @@ int main() {
 		}
 	}
 	return 0;
+}
