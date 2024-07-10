@@ -1,12 +1,17 @@
 #include "includes.h"
-using namespace std;
 
-class Actions {
-	public:
-		string Command;
-		string input;
+struct ioClass { // special class to manipulate with input-output proccedures
 
-		// you can use it to manipulate with actions inside the program
+	bool readed;
+	bool writed;
+	
+	char arrSymbols[5] = { '#', '@', '&', '-', '>' };
+	string text = "";
+	
+	string Command;
+	string input;
+	
+
 };
 
 int main() {
@@ -19,7 +24,7 @@ int main() {
 		string ArrMan[] = { "/wrt", "/brk", "/clo", "/help", "/read", "/cls" }; // initialization for actions with program
 
 
-		Actions FirstL;
+		ioClass FirstL;
 		cout << "path: -> main" << endl << endl;
 		cout << "'/help' to get commands" << endl << endl;
 		cin >> FirstL.Command;
@@ -28,85 +33,85 @@ int main() {
 		if (FirstL.Command == ArrMan[0]) {
 			Get_CLS();
 			ofstream FileWrite;
-			Actions SecondL;
+			ioClass SecondL;
 
 			FileName = ("Page/" + FileName);
 
 			string arrWrtCom[] = { "/path", "/unpath", "/brk"};
 
-			cout << "path: -> main -> write in file" << endl << endl;
-			cout << "what next? '/path' - to write in file with path, '/unpath' - to write in file wthout path" << endl;
-			cin >> SecondL.Command;
+				cout << "path: -> main -> write in file" << endl << endl;
+				cout << "what next? '/path' - to write in file with path, '/unpath' - to write in file wthout path" << endl;
+				cin >> SecondL.Command;
+				
+				if (SecondL.Command == arrWrtCom[0]){
+					string pathP = "Page/";
+					string pathS;
+					string pathF = "/txt";
+				
+				
+				}
 
-			if (SecondL.Command == arrWrtCom[0]) {
+				else if (SecondL.Command == arrWrtCom[1]) {
+					try {
+						FileWrite.open(FileName); // try to open file
 
+						if (FileWrite.is_open()) { // check to open file
+							while (true){
 
-			}
+								cout << "path: -> main -> write in file -> unpath" << endl << endl;
+								cout << "What do next? '/start' to enter text, '/brk' to leave command line" << endl;
 
-			else if (SecondL.Command == arrWrtCom[1]) {
-				try {
-					FileWrite.open(FileName); // try to open file
+								cin >> SecondL.Command;
 
-					if (FileWrite.is_open()) { // check to open file
-						while (true) {
+								bool writedIN = false;
 
-							cout << "path: -> main -> write in file -> unpath" << endl << endl;
-							cout << "What do next? '/start' to enter text, '/brk' to leave command line" << endl;
+								if (SecondL.Command == "/start") { // start input in file
 
-							cin >> SecondL.Command;
+									cout << endl << endl << "enter your text" << endl;
 
-							bool writedIN = false;
+									cin >> SecondL.input;
+									FileWrite << SecondL.input;
+									cout << endl << endl << endl;
 
-							if (SecondL.Command == "/start") { // start input in file
-
-								cout << endl << endl << "enter your text" << endl;
-
-								cin >> SecondL.input;
-								FileWrite << SecondL.input;
-								cout << endl << endl << endl;
-
-								if (SecondL.input != "") {
-									writedIN = true;
+									if (SecondL.input != "") {
+										writedIN = true;
+									}
+									if (writedIN == true) {
+										cout << endl << endl << "text writed succesfully" << endl << endl;
+									}
+									else {
+										cout << endl << "text is empty" << endl;
+									}
 								}
-								if (writedIN == true) {
-									cout << endl << endl << "text writed succesfully" << endl << endl;
+
+								else if (SecondL.Command == ArrMan[1]) {
+									FileWrite.close();
+									Get_CLS();
+									break;
 								}
 								else {
-									cout << endl << "text is empty" << endl;
+									cout << endl << "invalid command" << endl;
 								}
-							}
 
-							else if (SecondL.Command == ArrMan[1]) {
-								FileWrite.close();
-								Get_CLS();
-								break;
 							}
-							else {
-								cout << endl << "invalid command" << endl;
-							}
-
+						}
+						else {
+							cout << endl << endl;
+							cout << "cant open file...";
+							cout << endl << endl;
 						}
 					}
-					else {
+					catch (const char) {
 						cout << endl << endl;
-						cout << "cant open file...";
-						cout << endl << endl;
+						cout << "something went wrong";
+						cout << endl;
 					}
 				}
-				catch (const char) {
-					cout << endl << endl;
-					cout << "something went wrong";
-					cout << endl;
-				}
 			}
-			else if (SecondL.Command == arrWrtCom[2]) {
-				break;
-			}
-		}
 
 		else if (FirstL.Command == ArrMan[4]) { // algorithm to function of read and find in file
 			Get_CLS();
-			Actions SlineRd;
+			ioClass SlineRd;
 
 			string pathP = "Page/";
 			string pathS;
@@ -117,12 +122,14 @@ int main() {
 			string ComArray[] = { "/start", "/find", "/brk" }; // list of command
 
 			while (true) {
-				cout << "Path: -> main -> find" << endl << endl;
+				cout << "Path: -> main -> read" << endl << endl;
+
 				cout << "'/start' to simple read file, '/find' to find a symbol in file, '/brk' to exit from this command line" << endl;
 				cin >> SlineRd.Command;
 
 				if (SlineRd.Command == ComArray[0]) {
 					cout << endl << "---------------------------------------------------------------------------------------------" << endl;
+
 					cout << "enter name of your file." << endl;
 					cin >> pathS;
 
@@ -244,4 +251,3 @@ int main() {
 		}
 	}
 	return 0;
-}
