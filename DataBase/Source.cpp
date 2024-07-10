@@ -10,235 +10,237 @@ class Actions {
 };
 
 int main() {
+
 	while (true) {
-		while (true) {
-			//
-			long name = GetName(); // giving a name to txt file
-			string nameEx = to_string(name);
-			string FileName = (nameEx + ".txt");
-			//
-			string ArrMan[] = { "/wrt", "/brk", "/clo", "/help", "/read", "/cls"}; // initialization for actions with program 
-			//
-			Actions FirstL;
-			cout << "path: -> main" << endl << endl;
-			cout << "'/help' to get commands" << endl << endl;
-			cin >> FirstL.Command;
+		//	
+		long name = GetName(); // giving a name to txt file
+		string nameEx = to_string(name);
+		string FileName = (nameEx + ".txt");
+		string ArrMan[] = { "/wrt", "/brk", "/clo", "/help", "/read", "/cls" }; // initialization for actions with program
 
 
-			if (FirstL.Command == ArrMan[0]) {
-				Get_CLS();
-				ofstream FileWrite;
-				Actions SecondL;
+		Actions FirstL;
+		cout << "path: -> main" << endl << endl;
+		cout << "'/help' to get commands" << endl << endl;
+		cin >> FirstL.Command;
 
-				FileName = ("Page/" + FileName);
 
-				string arrWrtCom[] = { "/path", "/unpath" };
+		if (FirstL.Command == ArrMan[0]) {
+			Get_CLS();
+			ofstream FileWrite;
+			Actions SecondL;
 
-				cout << "path: -> main -> write in file" << endl << endl;
-				cout << "what next? '/path' - to write in file with path, '/unpath' - to write in file wthout path" << endl;
-				cin >> SecondL.Command;
-				
-				if (SecondL.Command == arrWrtCom[0]){
-				
-				
-				}
+			FileName = ("Page/" + FileName);
 
-				if (SecondL.Command == arrWrtCom[1]) {
-					try {
-						FileWrite.open(FileName); // try to open file
+			string arrWrtCom[] = { "/path", "/unpath", "/brk"};
 
-						if (FileWrite.is_open()) { // check to open file
-							while (true){
+			cout << "path: -> main -> write in file" << endl << endl;
+			cout << "what next? '/path' - to write in file with path, '/unpath' - to write in file wthout path" << endl;
+			cin >> SecondL.Command;
 
-								cout << "path: -> main -> write in file -> unpath" << endl << endl;
-								cout << "What do next? '/start' to enter text, '/brk' to leave command line" << endl;
+			if (SecondL.Command == arrWrtCom[0]) {
 
-								cin >> SecondL.Command;
 
-								bool writedIN = false;
+			}
 
-								if (SecondL.Command == "/start") { // start input in file
+			else if (SecondL.Command == arrWrtCom[1]) {
+				try {
+					FileWrite.open(FileName); // try to open file
 
-									cout << endl << endl << "enter your text" << endl;
+					if (FileWrite.is_open()) { // check to open file
+						while (true) {
 
-									cin >> SecondL.input;
-									FileWrite << SecondL.input;
-									cout << endl << endl << endl;
+							cout << "path: -> main -> write in file -> unpath" << endl << endl;
+							cout << "What do next? '/start' to enter text, '/brk' to leave command line" << endl;
 
-									if (SecondL.input != "") {
-										writedIN = true;
-									}
-									if (writedIN == true) {
-										cout << endl << endl << "text writed succesfully" << endl << endl;
-									}
-									else {
-										cout << endl << "text is empty" << endl;
-									}
+							cin >> SecondL.Command;
+
+							bool writedIN = false;
+
+							if (SecondL.Command == "/start") { // start input in file
+
+								cout << endl << endl << "enter your text" << endl;
+
+								cin >> SecondL.input;
+								FileWrite << SecondL.input;
+								cout << endl << endl << endl;
+
+								if (SecondL.input != "") {
+									writedIN = true;
 								}
-
-								else if (SecondL.Command == ArrMan[1]) {
-									FileWrite.close();
-									Get_CLS();
-									break;
+								if (writedIN == true) {
+									cout << endl << endl << "text writed succesfully" << endl << endl;
 								}
 								else {
-									cout << endl << "invalid command" << endl;
+									cout << endl << "text is empty" << endl;
 								}
+							}
 
+							else if (SecondL.Command == ArrMan[1]) {
+								FileWrite.close();
+								Get_CLS();
+								break;
+							}
+							else {
+								cout << endl << "invalid command" << endl;
+							}
+
+						}
+					}
+					else {
+						cout << endl << endl;
+						cout << "cant open file...";
+						cout << endl << endl;
+					}
+				}
+				catch (const char) {
+					cout << endl << endl;
+					cout << "something went wrong";
+					cout << endl;
+				}
+			}
+			else if (SecondL.Command == arrWrtCom[2]) {
+				break;
+			}
+		}
+
+		else if (FirstL.Command == ArrMan[4]) { // algorithm to function of read and find in file
+			Get_CLS();
+			Actions SlineRd;
+
+			string pathP = "Page/";
+			string pathS;
+			string pathF;
+
+			ifstream fileToRead;
+
+			string ComArray[] = { "/start", "/find", "/brk" }; // list of command
+
+			while (true) {
+				cout << "Path: -> main -> find" << endl << endl;
+				cout << "'/start' to simple read file, '/find' to find a symbol in file, '/brk' to exit from this command line" << endl;
+				cin >> SlineRd.Command;
+
+				if (SlineRd.Command == ComArray[0]) {
+					cout << endl << "---------------------------------------------------------------------------------------------" << endl;
+					cout << "enter name of your file." << endl;
+					cin >> pathS;
+
+					pathF = (pathP + pathS + ".txt");
+
+					fileToRead.open(pathF);
+
+					try {
+						bool readed = false;
+						if (fileToRead.is_open()) {
+
+							string txt;
+
+							fileToRead >> txt;
+							cout << endl << txt << endl;
+
+							if (txt == "") {
+								cout << endl << endl << "Text not found" << endl << endl;
+							}
+							if (txt != "") {
+								readed = true;
+							}
+							if (readed == true) {
+								fileToRead.close();
 							}
 						}
 						else {
-							cout << endl << endl;
-							cout << "cant open file...";
-							cout << endl << endl;
+							cout << endl << endl << "file didnt found" << endl << endl;
 						}
 					}
-					catch (const char) {
-						cout << endl << endl;
-						cout << "something went wrong";
-						cout << endl;
+					catch (const std::exception&) {
+						cout << endl << endl << endl << "file didnt found" << endl << endl << endl;
 					}
 				}
-			}
 
-			else if (FirstL.Command == ArrMan[4]) { // algorithm to function of read and find in file
-				Get_CLS();
-				Actions SlineRd;
+				else if (SlineRd.Command == ComArray[1]) { // algorithm to find a symbols in file
+					cout << endl << "---------------------------------------------------------------------------------------------" << endl;
 
-				string pathP = "Page/";
-				string pathS;
-				string pathF;
+					try {
 
-				ifstream fileToRead;
-				
-				string ComArray[] = { "/start", "/find", "/brk" }; // list of command
-				
-				while (true) {
-					cout << "Path: -> main -> find" << endl << endl;
-					cout << "'/start' to simple read file, '/find' to find a symbol in file, '/brk' to exit from this command line" << endl;
-					cin >> SlineRd.Command;
-					
-					if (SlineRd.Command == ComArray[0]) {
-						cout << endl << "---------------------------------------------------------------------------------------------" << endl;
-						cout << "enter name of your file." << endl;
+						char text[10000]; //initializing array of text. max size of text is (10000) symbols
+						bool loopOperator = false; // operator for main loop.
+
+						cout << endl << endl << "enter name of your file" << endl << endl;
 						cin >> pathS;
 
 						pathF = (pathP + pathS + ".txt");
+						if (pathS != "") {
 
-						fileToRead.open(pathF);
+							fileToRead.open(pathF);
 
-						try {
-							bool readed = false;
 							if (fileToRead.is_open()) {
+								cout << endl << "file - open" << endl;
 
-								string txt;
-								
-								fileToRead >> txt;
-								cout << endl << txt << endl;
+								while (loopOperator == false) { // 
 
-								if (txt == "") {
-									cout << endl << endl << "Text not found" << endl << endl;
-								}
-								if (txt != "") {
-									readed = true;
-								}
-								if (readed == true) {
-									fileToRead.close();
-								}
-							}
-							else {
-								cout << endl << endl << "file didnt found" << endl << endl;
-							}
-						}
-						catch (const std::exception&) {
-							cout << endl << endl << endl << "file didnt found" << endl << endl << endl;
-						}
-					}
+									fileToRead >> text; //input file in array of text
+									long numbersSym = 0;
 
-					else if (SlineRd.Command == ComArray[1]) { // algorithm to find a symbols in file
-						cout << endl << "---------------------------------------------------------------------------------------------" << endl;
+									for (int i = 0; i < 10000; i++) {
+										if (text[i] == '(' or text[i] == ')' or text[i] == '-' or text[i] == '$') {
 
-						try{
-							
-							char text[10000]; //initializing array of text. max size of text is (10000) symbols
-							bool loopOperator = false; // operator for main loop.
-
-							cout << endl << endl << "enter name of your file" << endl << endl;
-							cin >> pathS;
-
-							pathF = (pathP + pathS + ".txt");
-							if (pathS != "") {
-
-								fileToRead.open(pathF);
-
-								if (fileToRead.is_open()) {
-									cout << endl << "file - open" << endl;
-
-									while (loopOperator == false) { // 
-
-										fileToRead >> text; //input file in array of text
-										long numbersSym = 0;
-
-										for (int i = 0; i < 10000; i++) {
-											if (text[i] == '(' or text[i] == ')' or text[i] == '-' or text[i] == '$') {
-
-												numbersSym = (numbersSym + 1);
-											}
+											numbersSym = (numbersSym + 1);
 										}
-										if (numbersSym > 0) {
-											cout << endl << numbersSym << " " << "-" << " " << "numbers of special symbols in text" << endl << endl;
-										}
-										else if (numbersSym == 0) {
-											cout << endl << numbersSym << " " << "-" << " " << "numbers of special symbols in text" << endl << endl;
-										}
-										
-										loopOperator = true;
 									}
-								}
-								else { // I NEED MORE CHECK
-									cout << endl << endl << "file cant be opened" << endl << endl;
-								}
+									if (numbersSym > 0) {
+										cout << endl << numbersSym << " " << "-" << " " << "numbers of special symbols in text" << endl << endl;
+									}
+									else if (numbersSym == 0) {
+										cout << endl << numbersSym << " " << "-" << " " << "numbers of special symbols in text" << endl << endl;
+									}
 
+									loopOperator = true;
+								}
 							}
 							else { // I NEED MORE CHECK
-								cout << endl << endl << "invalid name of file" << endl << endl;
+								cout << endl << endl << "file cant be opened" << endl << endl;
 							}
 
 						}
-						catch (const std::exception&) {
-
+						else { // I NEED MORE CHECK
+							cout << endl << endl << "invalid name of file" << endl << endl;
 						}
 
 					}
-					else if (SlineRd.Command == ComArray[2]) {
-						break;
+					catch (const std::exception&) {
+
 					}
-					else {
-						cout << endl << endl << "invalid command" << endl << endl;
-					}
+
+				}
+				else if (SlineRd.Command == ComArray[2]) {
+					break;
+				}
+				else {
+					cout << endl << endl << "invalid command" << endl << endl;
 				}
 			}
+		}
 
-			else if (FirstL.Command == ArrMan[1]) {
-				Get_CLS();
-				break;
-			}
+		else if (FirstL.Command == ArrMan[1]) {
+			Get_CLS();
+			break;
+		}
 
-			else if (FirstL.Command == ArrMan[2]) {
-				Get_Exit();
-			}
+		else if (FirstL.Command == ArrMan[2]) {
+			Get_Exit();
+		}
 
-			else if (FirstL.Command == ArrMan[3]) {
-				Get_Help();
-			}
+		else if (FirstL.Command == ArrMan[3]) {
+			Get_Help();
+		}
 
-			else if (FirstL.Command == ArrMan[5]) {
-				Get_CLS();
-			}
+		else if (FirstL.Command == ArrMan[5]) {
+			Get_CLS();
+		}
 
-			else {
-				cout << endl << endl << "invalid command" << endl << endl;
-			}
+		else {
+			cout << endl << endl << "invalid command" << endl << endl;
 		}
 	}
 	return 0;
