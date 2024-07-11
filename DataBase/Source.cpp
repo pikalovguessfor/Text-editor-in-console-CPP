@@ -2,14 +2,14 @@
 
 struct ioClass { // special class to manipulate with input-output proccedures
 
-	bool readed;
-	bool writed;
+	bool readed = false;
+	bool writed =  false;
 	
 	char arrSymbols[5] = { '#', '@', '&', '-', '>' };
 	string text = "";
 	
-	string Command;
-	string input;
+	string Command = "";
+	string input = "";
 };
 
 int main() {
@@ -34,7 +34,7 @@ int main() {
 
 			ofstream FileWrite;
 
-			FileName = ("Page/" + FileName);
+			FileName = ("Page/" + FileName); // filename for unpath fuction
 
 			string arrWrtCom[] = { "/path", "/unpath", "/brk" };
 
@@ -47,8 +47,40 @@ int main() {
 
 				string pathP = "Page/"; // first part of path to file
 				string pathS;			// second part of path to file
-				string pathF = "/txt";  // third part of path to file
+				string pathF = ".txt";  // third part of path to file
 
+				cout << endl << "please write name of your file" << endl;
+				cin >> pathS;
+				
+				string pathEX = (pathP + pathS + pathF); // setting name of file
+
+				FileWrite.open(pathEX);
+				if (FileWrite.is_open()) {
+
+					cout << endl << "enter your text" << endl;
+					cin >> insidePathWrt_.text;
+					
+					FileWrite << insidePathWrt_.text;
+
+					ifstream checkWrited; // check theres text was writed
+					checkWrited.open(pathEX);
+					if (checkWrited.is_open()) {
+
+						string text_check;
+
+						checkWrited >> text_check;
+						
+						if (text_check != " " or text_check != "") {
+							cout << endl << "file writed succesfully" << endl; // checker
+						}
+						else {
+							cout << endl << "text didnt writed" << endl;
+						}
+					}
+				}
+				else {
+					cout << endl << "cant open file" << endl;
+				}
 			}
 
 			else if (SecondL.Command == arrWrtCom[1]) {
