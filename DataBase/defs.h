@@ -101,3 +101,4 @@ void Get_CLS() {  // self-write fuction to get clear console
 void Get_Exit() {// function to abort programm
 	exit(0);
 }
+

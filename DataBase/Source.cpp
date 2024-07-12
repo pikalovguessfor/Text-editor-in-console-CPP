@@ -1,16 +1,21 @@
 #include "includes.h"
 
-struct ioClass { // special class to manipulate with input-output proccedures
+class ioClass { // special class to manipulate with input-output proccedures
+public:
 
 	bool readed = false;
 	bool writed =  false;
 	
 	char arrSymbols[5] = { '#', '@', '&', '-', '>' };
+
 	string text = "";
 	
 	string Command = "";
 	string input = "";
+
 };
+
+
 
 int main() {
 
@@ -71,10 +76,14 @@ int main() {
 						checkWrited >> text_check;
 						
 						if (text_check != " " or text_check != "") {
-							cout << endl << "file writed succesfully" << endl; // checker
+							insidePathWrt_.writed = true;
 						}
 						else {
 							cout << endl << "text didnt writed" << endl;
+						}
+
+						if (insidePathWrt_.writed == true) {
+							cout << endl << endl << "text writed succesfully" << endl << endl;
 						}
 					}
 				}
@@ -147,10 +156,6 @@ int main() {
 			Get_CLS();
 			ioClass SlineRd;
 
-			string pathP = "Page/";
-			string pathS;
-			string pathF;
-
 			ifstream fileToRead;
 
 			string ComArray[] = { "/start", "/find", "/brk" }; // list of command
@@ -162,95 +167,86 @@ int main() {
 				cin >> SlineRd.Command;
 
 				if (SlineRd.Command == ComArray[0]) {
+					ioClass insideRead;
 
-					cout << "enter name of your file." << endl;
-					cin >> pathS;
+					string nameFileF = "Page/";
+					string nameFileS;
+					string nameFileT = ".txt";
 
-					pathF = (pathP + pathS + ".txt");
+					cout << endl << "enter name of your file." << endl;
+					cin >> nameFileS;
 
-					fileToRead.open(pathF);
+					string nameFileE = (nameFileF + nameFileS + nameFileT);
 
-					try {
-						bool readed = false;
-						if (fileToRead.is_open()) {
+					fileToRead.open(nameFileE);
 
-							string txt;
+					if (fileToRead.is_open()) {
 
-							fileToRead >> txt;
-							cout << endl << txt << endl;
+						char text[15000];
 
-							if (txt == "") {
-								cout << endl << endl << "Text not found" << endl << endl;
-							}
-							if (txt != "") {
-								readed = true;
-							}
-							if (readed == true) {
-								fileToRead.close();
-							}
-						}
-						else {
-							cout << endl << endl << "file didnt found" << endl << endl;
-						}
+						cout << endl << "file is open" << endl;
+						fileToRead >> text;
+
+						cout << endl << endl << text << endl << endl;
+					
 					}
-					catch (const std::exception&) {
-						cout << endl << endl << endl << "file didnt found" << endl << endl << endl;
+					else {
+						cout << endl << endl << endl << "file cant be opened" << endl << endl << endl;
 					}
 				}
 
 				else if (SlineRd.Command == ComArray[1]) { // algorithm to find a symbols in file
+					ioClass insideFind;
 
-					try {
+					string nameFileF = "Page/";
+					string nameFileS;
+					string nameFileT = ".txt";
 
-						char text[10000]; //initializing array of text. max size of text is (10000) symbols
-						bool loopOperator = false; // operator for main loop.
+					cout << endl << "enter name of your file" << endl;
+					cin >> nameFileS;
+					
+					string nameFileE = (nameFileF + nameFileS + nameFileT);
+					
+					fileToRead.open(nameFileE);
 
-						cout << endl << endl << "enter name of your file" << endl << endl;
-						cin >> pathS;
+					if (fileToRead.is_open()) {
 
-						pathF = (pathP + pathS + ".txt");
-						if (pathS != "") {
+						char text[15000];
+						long count = 0;
 
-							fileToRead.open(pathF);
-
-							if (fileToRead.is_open()) {
-								cout << endl << "file - open" << endl;
-
-								while (loopOperator == false) { // 
-
-									fileToRead >> text; //input file in array of text
-									long numbersSym = 0;
-
-									for (int i = 0; i < 10000; i++) {
-										if (text[i] == '(' or text[i] == ')' or text[i] == '-' or text[i] == '$') {
-
-											numbersSym = (numbersSym + 1);
-										}
-									}
-									if (numbersSym > 0) {
-										cout << endl << numbersSym << " " << "-" << " " << "numbers of special symbols in text" << endl << endl;
-									}
-									else if (numbersSym == 0) {
-										cout << endl << numbersSym << " " << "-" << " " << "numbers of special symbols in text" << endl << endl;
-									}
-
-									loopOperator = true;
-								}
+						cout << endl << "file is open" << endl;
+						fileToRead >> text;
+						
+						
+						for (int i = 0; i < sizeof(text); i++) { // loop for calculate numbers of specSymbols in array
+							if(text[i] ==insideFind.arrSymbols[0]) {
+								count++;
 							}
-							else { // I NEED MORE CHECK
-								cout << endl << endl << "file cant be opened" << endl << endl;
+							else if (text[i] == insideFind.arrSymbols[1]) {
+								count++;
+							}
+							else if (text[i] == insideFind.arrSymbols[2]) {
+								count++;
+							}
+							else if (text[i] == insideFind.arrSymbols[3]) {
+								count++;
+							}
+							else if (text[i] == insideFind.arrSymbols[4]) {
+								count++;
 							}
 
 						}
-						else { // I NEED MORE CHECK
-							cout << endl << endl << "invalid name of file" << endl << endl;
-						}
+
+						cout << endl << endl << endl;
+						cout << "Numbers of special symbols inside your file is -> " << count;
+						cout << endl << endl << endl;
+
 
 					}
-					catch (const std::exception&) {
-
+					else {
+						cout << endl << endl << endl << "file cant be open" <<  endl;
 					}
-
+					
 				}
 				else if (SlineRd.Command == ComArray[2]) {
 					break;
@@ -260,6 +256,8 @@ int main() {
 				}
 			}
 		}
+
+		
 
 		else if (FirstL.Command == ArrMan[1]) {
 			Get_CLS();
