@@ -13,8 +13,16 @@ public:
 	string Command = "";
 	string input = "";
 
+
 };
 
+class TextWork {
+public:
+
+	char Text[25000]; //class to work with text in "find" function
+	
+
+};
 
 
 int main() {
@@ -51,6 +59,7 @@ int main() {
 				if (SecondL.Command == arrWrtCom[0]) { // write inside file with path
 
 					ioClass insidePathWrt_;
+					TextWork TextPath;
 
 					string pathP = "Page/"; // first part of path to file
 					string pathS;			// second part of path to file
@@ -64,10 +73,13 @@ int main() {
 					FileWrite.open(pathEX);
 					if (FileWrite.is_open()) {
 
-						cout << endl << "enter your text" << endl;
-						cin >> insidePathWrt_.text;
+						TextPath.Text;
 
-						FileWrite << insidePathWrt_.text;
+						cout << endl << "enter your text" << endl;
+						cin >> TextPath.Text;
+						
+						
+						FileWrite << TextPath.Text;
 
 						ifstream checkWrited; // check theres text was writed
 						checkWrited.open(pathEX);
@@ -96,23 +108,21 @@ int main() {
 
 				else if (SecondL.Command == arrWrtCom[1]) { //function to write without path
 					ioClass insideUnpathWrt;
-
-					ifstream help_me_write;
+					TextWork TextUnpath;
 					
 					FileWrite.open(FileName);
 
 					if (FileWrite.is_open()) {
 
-						string text;                       //var text
-						char text_rewriter[20000];
+						TextUnpath.Text;                   //var text
 
 						cout << endl << endl;
 						cout << "enter your text";
 						cout << endl << endl;
 						
-						cin >> text;
+						cin >> TextUnpath.Text;
 						
-						FileWrite << text;
+						FileWrite << TextUnpath.Text;
 
 					}
 					else {
@@ -144,6 +154,7 @@ int main() {
 
 				if (SlineRd.Command == ComArray[0]) {
 					ioClass insideRead;
+					TextWork TextINSRead;
 
 					string nameFileF = "Page/";
 					string nameFileS;
@@ -158,12 +169,12 @@ int main() {
 
 					if (fileToRead.is_open()) {
 
-						char text[15000];
+						TextINSRead.Text;
 
 						cout << endl << "file is open" << endl;
-						fileToRead >> text;
+						fileToRead >> TextINSRead.Text;
 
-						cout << endl << endl << text << endl << endl;
+						cout << endl << endl << TextINSRead.Text << endl << endl;
 					
 					}
 					else {
@@ -173,6 +184,7 @@ int main() {
 
 				else if (SlineRd.Command == ComArray[1]) { // algorithm to find a symbols in file
 					ioClass insideFind;
+					TextWork TextInsideFind;
 
 					string nameFileF = "Page/";
 					string nameFileS;
@@ -187,28 +199,38 @@ int main() {
 
 					if (fileToRead.is_open()) {
 
-						char text[15000];
+						TextInsideFind.Text;
 						long count = 0;
 
 						cout << endl << "file is open" << endl;
-						fileToRead >> text;
+						fileToRead >> TextInsideFind.Text;
 						
 						
-						for (int i = 0; i < sizeof(text); i++) { // loop for calculate numbers of specSymbols in array
-							if(text[i] ==insideFind.arrSymbols[0]) {
+						for (int i = 0; i < sizeof(TextInsideFind.Text); i++) { // loop for calculate numbers of specSymbols in array
+							if(TextInsideFind.Text[i] == insideFind.arrSymbols[0]) {
 								count++;
+
+								cout << TextInsideFind.Text[i - 5] << TextInsideFind.Text[i - 4] << TextInsideFind.Text[i - 3] << TextInsideFind.Text[i - 2] << TextInsideFind.Text[i - 1] << TextInsideFind.Text[i];
 							}
-							else if (text[i] == insideFind.arrSymbols[1]) {
+							else if (TextInsideFind.Text[i] == insideFind.arrSymbols[1]) {
 								count++;
+
+								cout << TextInsideFind.Text[i - 5] << TextInsideFind.Text[i - 4] << TextInsideFind.Text[i - 3] << TextInsideFind.Text[i - 2] << TextInsideFind.Text[i - 1] << TextInsideFind.Text[i];
 							}
-							else if (text[i] == insideFind.arrSymbols[2]) {
+							else if (TextInsideFind.Text[i] == insideFind.arrSymbols[2]) {
 								count++;
+
+								cout << TextInsideFind.Text[i - 5] << TextInsideFind.Text[i - 4] << TextInsideFind.Text[i - 3] << TextInsideFind.Text[i - 2] << TextInsideFind.Text[i - 1] << TextInsideFind.Text[i];
 							}
-							else if (text[i] == insideFind.arrSymbols[3]) {
+							else if (TextInsideFind.Text[i] == insideFind.arrSymbols[3]) {
 								count++;
+
+								cout << TextInsideFind.Text[i - 5] << TextInsideFind.Text[i - 4] << TextInsideFind.Text[i - 3] << TextInsideFind.Text[i - 2] << TextInsideFind.Text[i - 1] << TextInsideFind.Text[i];
 							}
-							else if (text[i] == insideFind.arrSymbols[4]) {
+							else if (TextInsideFind.Text[i] == insideFind.arrSymbols[4]) {
 								count++;
+
+								cout << TextInsideFind.Text[i - 5] << TextInsideFind.Text[i - 4] << TextInsideFind.Text[i - 3] << TextInsideFind.Text[i - 2] << TextInsideFind.Text[i - 1] << TextInsideFind.Text[i];
 							}
 
 						}

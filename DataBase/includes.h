@@ -7,6 +7,7 @@
 #include <fstream>
 #include <string>
 #include <time.h>
+#include <vector>
 
 #include "defs.h"
 
