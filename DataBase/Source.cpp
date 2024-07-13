@@ -23,7 +23,7 @@ int main() {
 		//	
 		long name = GetName(); // giving a name to txt file
 		string nameEx = to_string(name);
-		string FileName = (nameEx + ".txt");
+		string FileName = (nameEx +".txt");
 		string ArrMan[] = { "/wrt", "/brk", "/clo", "/help", "/read", "/cls" }; // initialization for actions with program
 
 
@@ -35,119 +35,95 @@ int main() {
 
 		if (FirstL.Command == ArrMan[0]) {
 			Get_CLS();
-			ioClass SecondL;
+			while (true) {
+				ioClass SecondL;
 
-			ofstream FileWrite;
+				ofstream FileWrite;
 
-			FileName = ("Page/" + FileName); // filename for unpath fuction
+				FileName = ("Page/" + FileName); // filename for unpath fuction
 
-			string arrWrtCom[] = { "/path", "/unpath", "/brk" };
+				string arrWrtCom[] = { "/path", "/unpath", "/brk" };
 
-			cout << "path: -> main -> write in file" << endl << endl;
-			cout << "what next? '/path' - to write in file with path, '/unpath' - to write in file wthout path" << endl;
-			cin >> SecondL.Command;
+				cout << "path: -> main -> write in file" << endl << endl;
+				cout << "what next? '/path' - to write in file with path, '/unpath' - to write in file wthout path, '/brk' to close this line" << endl;
+				cin >> SecondL.Command;
 
-			if (SecondL.Command == arrWrtCom[0]) { // write inside file with path
-				ioClass insidePathWrt_;
+				if (SecondL.Command == arrWrtCom[0]) { // write inside file with path
 
-				string pathP = "Page/"; // first part of path to file
-				string pathS;			// second part of path to file
-				string pathF = ".txt";  // third part of path to file
+					ioClass insidePathWrt_;
 
-				cout << endl << "please write name of your file" << endl;
-				cin >> pathS;
-				
-				string pathEX = (pathP + pathS + pathF); // setting name of file
+					string pathP = "Page/"; // first part of path to file
+					string pathS;			// second part of path to file
+					string pathF = ".txt";  // third part of path to file
 
-				FileWrite.open(pathEX);
-				if (FileWrite.is_open()) {
+					cout << endl << "please write name of your file" << endl;
+					cin >> pathS;
 
-					cout << endl << "enter your text" << endl;
-					cin >> insidePathWrt_.text;
-					
-					FileWrite << insidePathWrt_.text;
+					string pathEX = (pathP + pathS + pathF); // setting name of file
 
-					ifstream checkWrited; // check theres text was writed
-					checkWrited.open(pathEX);
-					if (checkWrited.is_open()) {
+					FileWrite.open(pathEX);
+					if (FileWrite.is_open()) {
 
-						string text_check;
+						cout << endl << "enter your text" << endl;
+						cin >> insidePathWrt_.text;
 
-						checkWrited >> text_check;
-						
-						if (text_check != " " or text_check != "") {
-							insidePathWrt_.writed = true;
-						}
-						else {
-							cout << endl << "text didnt writed" << endl;
-						}
+						FileWrite << insidePathWrt_.text;
 
-						if (insidePathWrt_.writed == true) {
-							cout << endl << endl << "text writed succesfully" << endl << endl;
-						}
-					}
-				}
-				else {
-					cout << endl << "cant open file" << endl;
-				}
-			}
+						ifstream checkWrited; // check theres text was writed
+						checkWrited.open(pathEX);
+						if (checkWrited.is_open()) {
 
-			else if (SecondL.Command == arrWrtCom[1]) {
-				ioClass insidePathWrt;
+							string text_check;
 
-				try {
-					FileWrite.open(FileName); // try to open file
+							checkWrited >> text_check;
 
-					if (FileWrite.is_open()) { // check to open file
-						while (true) {
-
-							cout << "path: -> main -> write in file -> unpath" << endl << endl;
-							cout << "What do next? '/start' to enter text, '/brk' to leave command line" << endl;
-
-							cin >> SecondL.Command;
-
-							bool writedIN = false;
-
-							if (SecondL.Command == "/start") { // start input in file
-
-								cout << endl << endl << "enter your text" << endl;
-
-								cin >> SecondL.input;
-								FileWrite << SecondL.input;
-								cout << endl << endl << endl;
-
-								if (SecondL.input != "") {
-									writedIN = true;
-								}
-								if (writedIN == true) {
-									cout << endl << endl << "text writed succesfully" << endl << endl;
-								}
-								else {
-									cout << endl << "text is empty" << endl;
-								}
-							}
-
-							else if (SecondL.Command == ArrMan[1]) {
-								FileWrite.close();
-								Get_CLS();
-								break;
+							if (text_check != " " or text_check != "") {
+								insidePathWrt_.writed = true;
 							}
 							else {
-								cout << endl << "invalid command" << endl;
+								cout << endl << "text didnt writed" << endl;
 							}
 
+							if (insidePathWrt_.writed == true) {
+								cout << endl << endl << "text writed succesfully" << endl << endl;
+							}
 						}
 					}
 					else {
-						cout << endl << endl;
-						cout << "cant open file...";
-						cout << endl << endl;
+						cout << endl << "cant open file" << endl;
 					}
 				}
-				catch (const char) {
-					cout << endl << endl;
-					cout << "something went wrong";
-					cout << endl;
+
+				else if (SecondL.Command == arrWrtCom[1]) { //function to write without path
+					ioClass insideUnpathWrt;
+
+					ifstream help_me_write;
+					
+					FileWrite.open(FileName);
+
+					if (FileWrite.is_open()) {
+
+						string text;                       //var text
+						char text_rewriter[20000];
+
+						cout << endl << endl;
+						cout << "enter your text";
+						cout << endl << endl;
+						
+						cin >> text;
+						
+						FileWrite << text;
+
+					}
+					else {
+						cout << endl << endl <<endl;
+						cout << "cant open file";
+						cout << endl << endl << endl;
+					}
+				}
+
+				else if (SecondL.Command == arrWrtCom[2]) {
+					break;
 				}
 			}
 		}
