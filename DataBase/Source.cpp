@@ -1,31 +1,44 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "includes.h"
+#include "defs.h"
+
 
 class ioClass { // special class to manipulate with input-output proccedures
 public:
-
-	bool readed = false;
-	bool writed =  false;
 	
-	char arrSymbols[5] = { '#', '@', '&', '-', '>' };
+	const char arrSymbols[5] = { '#', '@', '&', '-', '>' };
 
 	string text = "";
 	
 	string Command = "";
 	string input = "";
+	
 
+
+	void ChSlash() { //check '/' symbol in command
+		
+		if (Command[0] != '/') {
+			cout << endl << endl << "commands must begin from '/' symbol";
+		}
+
+	}
 
 };
 
 class TextWork {
 public:
 
-	char Text[25000]; //class to work with text in "find" function
+	string Text; //class to work with text in "find" function
 	
-
+	
 };
 
 
+
+
 int main() {
+
 
 	while (true) {
 		//	
@@ -36,14 +49,19 @@ int main() {
 
 
 		ioClass FirstL;
+
 		cout << "path: -> main" << endl << endl;
 		cout << "'/help' to get commands" << endl << endl;
+
 		cin >> FirstL.Command;
+		FirstL.ChSlash();
 
 
 		if (FirstL.Command == ArrMan[0]) {
 			Get_CLS();
+
 			while (true) {
+
 				ioClass SecondL;
 
 				ofstream FileWrite;
@@ -55,6 +73,7 @@ int main() {
 				cout << "path: -> main -> write in file" << endl << endl;
 				cout << "what next? '/path' - to write in file with path, '/unpath' - to write in file wthout path, '/brk' to close this line" << endl;
 				cin >> SecondL.Command;
+				SecondL.ChSlash(); // check correct of 'command'
 
 				if (SecondL.Command == arrWrtCom[0]) { // write inside file with path
 
@@ -73,33 +92,15 @@ int main() {
 					FileWrite.open(pathEX);
 					if (FileWrite.is_open()) {
 
-						TextPath.Text;
+						char symbol = ' ';
 
 						cout << endl << "enter your text" << endl;
-						cin >> TextPath.Text;
-						
+						cin.get();
+						getline(cin, TextPath.Text);
 						
 						FileWrite << TextPath.Text;
 
-						ifstream checkWrited; // check theres text was writed
-						checkWrited.open(pathEX);
-						if (checkWrited.is_open()) {
-
-							string text_check;
-
-							checkWrited >> text_check;
-
-							if (text_check != " " or text_check != "") {
-								insidePathWrt_.writed = true;
-							}
-							else {
-								cout << endl << "text didnt writed" << endl;
-							}
-
-							if (insidePathWrt_.writed == true) {
-								cout << endl << endl << "text writed succesfully" << endl << endl;
-							}
-						}
+						FileWrite.close();
 					}
 					else {
 						cout << endl << "cant open file" << endl;
@@ -120,10 +121,13 @@ int main() {
 						cout << "enter your text";
 						cout << endl << endl;
 						
-						cin >> TextUnpath.Text;
+						cin.get();
+						getline(cin, TextUnpath.Text);
 						
 						FileWrite << TextUnpath.Text;
 
+
+						FileWrite.close();
 					}
 					else {
 						cout << endl << endl <<endl;
@@ -151,9 +155,11 @@ int main() {
 
 				cout << "'/start' to simple read file, '/find' to find a symbol in file, '/brk' to exit from this command line" << endl;
 				cin >> SlineRd.Command;
+				SlineRd.ChSlash();
 
 				if (SlineRd.Command == ComArray[0]) {
 					ioClass insideRead;
+
 					TextWork TextINSRead;
 
 					string nameFileF = "Page/";
@@ -172,10 +178,13 @@ int main() {
 						TextINSRead.Text;
 
 						cout << endl << "file is open" << endl;
+
 						fileToRead >> TextINSRead.Text;
 
 						cout << endl << endl << TextINSRead.Text << endl << endl;
-					
+
+						
+						fileToRead.close();
 					}
 					else {
 						cout << endl << endl << endl << "file cant be opened" << endl << endl << endl;
@@ -240,6 +249,7 @@ int main() {
 						cout << endl << endl << endl;
 
 
+						fileToRead.close();
 					}
 					else {
 						cout << endl << endl << endl << "file cant be open" <<  endl;
