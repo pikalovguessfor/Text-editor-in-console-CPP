@@ -38,12 +38,17 @@ public:
 
 
 int main() {
-
+	subclassName nameGener;
 
 	while (true) {
-		//	
-		long name = GetName(); // giving a name to txt file
-		string nameEx = to_string(name);
+		// algorith imagined in "name_gen.h"	
+		long nameFileUn = genNameUn(); // giving a name to txt file
+		string nameEx = to_string(nameFileUn);
+		nameEx = nameEx + "_un";
+		//
+
+		cout << endl << endl << endl << nameEx << endl << endl;
+
 		string FileName = (nameEx +".txt");
 		string ArrMan[] = { "/wrt", "/brk", "/clo", "/help", "/read", "/cls" }; // initialization for actions with program
 

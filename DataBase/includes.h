@@ -12,6 +12,7 @@
 #include <vector>
 
 #include "defs.h"
+#include "name_gen.h"
 
 #include <conio.h> // windows depended lobrary
 #include <filesystem> // windows depended library
