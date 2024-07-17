@@ -1,7 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "includes.h"
-#include "defs.h"
 
 
 class ioClass { // special class to manipulate with input-output proccedures
@@ -31,27 +30,42 @@ public:
 
 	string Text; //class to work with text in "find" function
 	
-	
+	int TextFSym(string text) {
+		
+		if (FsymBool(text)) {
+			cout << endl << "Text is empty" << endl;
+		}
+		else {
+			cout << "";
+		}
+
+		return 0;
+
+	}
+
+private:
+
+	bool FsymBool(string text) {
+		
+		for (int i = 0; i != 1; i++) {
+			if (text[i] == '\n' or text[i] == '\0') {
+
+				return true;
+
+			}
+			else {
+				return false;
+			}
+		}
+	}
 };
 
 
-
-
 int main() {
-	subclassName nameGener;
-
+	
 	while (true) {
-		// algorith imagined in "name_gen.h"	
-		long nameFileUn = genNameUn(); // giving a name to txt file
-		string nameEx = to_string(nameFileUn);
-		nameEx = nameEx + "_un";
-		//
 
-
-		string FileName = (nameEx +".txt");
 		string ArrMan[] = { "/wrt", "/brk", "/clo", "/help", "/read", "/cls" }; // initialization for actions with program
-
-
 		ioClass FirstL;
 
 		cout << "path: -> main" << endl << endl;
@@ -69,8 +83,6 @@ int main() {
 				ioClass SecondL;
 
 				ofstream FileWrite;
-
-				FileName = ("Page/" + FileName); // filename for unpath fuction
 
 				string arrWrtCom[] = { "/path", "/unpath", "/brk" };
 
@@ -101,7 +113,9 @@ int main() {
 						cout << endl << "enter your text" << endl;
 						cin.get();
 						getline(cin, TextPath.Text);
-						
+
+						TextPath.TextFSym(TextPath.Text);
+
 						FileWrite << TextPath.Text;
 
 						FileWrite.close();
@@ -112,6 +126,18 @@ int main() {
 				}
 
 				else if (SecondL.Command == arrWrtCom[1]) { //function to write without path
+					gen::subclassName nameGener;
+
+					// algorith imagined in "name_gen.h"	
+					long nameFileUn = gen::genNameUn();    // giving a name to txt file
+					string nameEx = to_string(nameFileUn);
+					nameEx = nameEx + "_un";
+
+					string FileName = (nameEx + ".txt");
+					FileName = ("Page/" + FileName);       // filename for unpath fuction
+					cout << endl << FileName << "<- name of file" << endl;
+					//
+
 					ioClass insideUnpathWrt;
 					TextWork TextUnpath;
 					
@@ -127,6 +153,8 @@ int main() {
 						
 						cin.get();
 						getline(cin, TextUnpath.Text);
+
+						TextUnpath.TextFSym(TextUnpath.Text);
 						
 						FileWrite << TextUnpath.Text;
 

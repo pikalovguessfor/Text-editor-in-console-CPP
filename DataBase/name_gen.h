@@ -3,70 +3,63 @@
 #include "includes.h"
 using namespace std;
 
+namespace gen {
 
-class subclassName {
-	// this is class for generate name of file in SCENARIO UNPATH.
+	class subclassName {
+		// this is class for generate name of file in SCENARIO UNPATH.
 
-public:
-	long NameProg;
-	bool NameNotUsing = false;
+	public:
+		long NameProg = 0;
+		bool NameNotUsing = false;
 
-	int GetName() {
-		// this is function to generate a name of your file.
-		// this is need to do your program more unique.
-		// thats need for multiple create a some programms
-		// you can create more than one txt file. 
-		// use function to_string in main page of program, to mutate in string.
-		// thats need because function GenName() return LONG type;
+		int GetName() {
+			// this is function to generate a name of your file.
+			// this is need to do your program more unique.
+			// thats need for multiple create a some programms
+			// you can create more than one txt file. 
+			// use function to_string in main page of program, to mutate in string.
+			// thats need because function GenName() return LONG type;
 
-		long name = rand() % 100000;
+			srand(time(0));
 
-		return name;
-	}
+			long name;
 
+			do {
 
-	// bool method to check file with this name is exist;
+				name = (1 + rand() % 100000);
 
-	bool __GenNameValid(long name) {
+			} while (!__GenNameValid(name));
 
-		ifstream subCheck;
-
-		string name_string = to_string(name);
-
-		subCheck.open(name_string + ".txt");
-
-		if (subCheck.is_open()) {
-			return false;
+			return name;
 		}
 
-		else {
-			return true;
+	private:
+		// bool method to check file with this name is exist;
+
+		bool __GenNameValid(long name) {
+
+			ifstream subCheck;
+
+			string name_string = to_string(name);
+
+			subCheck.open(name_string + ".txt");
+
+			if (subCheck.is_open()) {
+				return false;
+			}
+
+			else {
+				return true;
+			}
 		}
-	}
-};
+	};
 
 
-long genNameUn() {
-	//Main function theres uses class methods of class "subclass name"
-
-	srand(time(0));
-
-	subclassName Namecl;
-	
-	long NameFile = Namecl.NameProg;
-	long finalName = 0;
-
-	linkgoto:
-
-	Namecl.NameProg = Namecl.GetName();
-	
-	while (true){
-		if (Namecl.__GenNameValid(Namecl.NameProg)) {
-			return Namecl.NameProg;
-
-		}
-		else {
-			goto linkgoto;
-		}
+	long genNameUn() {
+		//Main function theres uses class methods of class "subclass name"
+		
+		subclassName classgen;
+		
+		return classgen.GetName();
 	}
 }
