@@ -25,11 +25,10 @@ public:
 	}
 
 
-public:
-
 	// bool method to check file with this name is exist;
 
 	bool __GenNameValid(long name) {
+
 		ifstream subCheck;
 
 		string name_string = to_string(name);
@@ -39,6 +38,7 @@ public:
 		if (subCheck.is_open()) {
 			return false;
 		}
+
 		else {
 			return true;
 		}

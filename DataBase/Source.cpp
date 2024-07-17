@@ -47,7 +47,6 @@ int main() {
 		nameEx = nameEx + "_un";
 		//
 
-		cout << endl << endl << endl << nameEx << endl << endl;
 
 		string FileName = (nameEx +".txt");
 		string ArrMan[] = { "/wrt", "/brk", "/clo", "/help", "/read", "/cls" }; // initialization for actions with program
