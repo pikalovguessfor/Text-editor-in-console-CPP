@@ -13,6 +13,7 @@
 
 #include "defs.h"
 #include "name_gen.h"
+#include "parcer.h"
 
 #include <conio.h> // windows depended lobrary
 #include <filesystem> // windows depended library

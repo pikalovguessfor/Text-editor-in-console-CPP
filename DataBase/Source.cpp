@@ -228,6 +228,7 @@ int main() {
 				else if (SlineRd.Command == ComArray[1]) { // algorithm to find a symbols in file
 					ioClass insideFind;
 					TextWork TextInsideFind;
+					Parcer ParceSpec;
 
 					string nameFileF = "Page/";
 					string nameFileS;
@@ -243,20 +244,14 @@ int main() {
 					if (fileToRead.is_open()) {
 
 						TextInsideFind.Text;
-						long count = 0;
 
 						cout << endl << "file is open" << endl;
 						for (int i = 0; i <= 1999; i++) {
 							fileToRead.get(TextInsideFind.SymArr[i]);
 						}
 						
+						ParceSpec.ParseFile(TextInsideFind.SymArr);
 						
-
-						cout << endl << endl << endl;
-						cout << "Numbers of special symbols inside your file is -> " << count;
-						cout << endl << endl << endl;
-
-
 						fileToRead.close();
 					}
 					else {

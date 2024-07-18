@@ -29,5 +29,8 @@
     <ClInclude Include="name_gen.h">
       <Filter>Frameworks</Filter>
     </ClInclude>
+    <ClInclude Include="parcer.h">
+      <Filter>Frameworks</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
