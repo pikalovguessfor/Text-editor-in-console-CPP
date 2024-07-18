@@ -3,9 +3,9 @@
 #include "includes.h"
 using namespace std;
 
-namespace gen {
 
-	class subclassName {
+
+class subclassName {
 		// this is class for generate name of file in SCENARIO UNPATH.
 
 	public:
@@ -62,4 +62,4 @@ namespace gen {
 		
 		return classgen.GetName();
 	}
-}
+	

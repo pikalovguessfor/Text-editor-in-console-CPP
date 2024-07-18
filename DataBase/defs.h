@@ -25,3 +25,14 @@ void Get_Exit() {// function to abort programm
 	exit(0);
 }
 
+int ParseFile(char arrSym[2000]) {
+
+	bool operation_stop = false;
+
+
+
+
+	if (operation_stop) {
+		return 0;
+	}
+}

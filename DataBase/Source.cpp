@@ -29,6 +29,7 @@ class TextWork {
 public:
 
 	string Text; //class to work with text in "find" function
+	char SymArr[2000];
 	
 	int TextFSym(string text) {
 		
@@ -126,10 +127,10 @@ int main() {
 				}
 
 				else if (SecondL.Command == arrWrtCom[1]) { //function to write without path
-					gen::subclassName nameGener;
+					subclassName nameGener;
 
 					// algorith imagined in "name_gen.h"	
-					long nameFileUn = gen::genNameUn();    // giving a name to txt file
+					long nameFileUn = genNameUn();    // giving a name to txt file
 					string nameEx = to_string(nameFileUn);
 					nameEx = nameEx + "_un";
 
@@ -211,9 +212,10 @@ int main() {
 
 						cout << endl << "file is open" << endl;
 
-						fileToRead >> TextINSRead.Text;
-
-						cout << endl << endl << TextINSRead.Text << endl << endl;
+						for (int i = 0; i < 1999; i++) {
+							fileToRead.get(TextINSRead.SymArr[i]);
+						}
+						cout << endl << endl << TextINSRead.SymArr << endl << endl;
 
 						
 						fileToRead.close();
@@ -244,37 +246,11 @@ int main() {
 						long count = 0;
 
 						cout << endl << "file is open" << endl;
-						fileToRead >> TextInsideFind.Text;
-						
-						
-						for (int i = 0; i < sizeof(TextInsideFind.Text); i++) { // loop for calculate numbers of specSymbols in array
-							if(TextInsideFind.Text[i] == insideFind.arrSymbols[0]) {
-								count++;
-
-								cout << TextInsideFind.Text[i - 5] << TextInsideFind.Text[i - 4] << TextInsideFind.Text[i - 3] << TextInsideFind.Text[i - 2] << TextInsideFind.Text[i - 1] << TextInsideFind.Text[i];
-							}
-							else if (TextInsideFind.Text[i] == insideFind.arrSymbols[1]) {
-								count++;
-
-								cout << TextInsideFind.Text[i - 5] << TextInsideFind.Text[i - 4] << TextInsideFind.Text[i - 3] << TextInsideFind.Text[i - 2] << TextInsideFind.Text[i - 1] << TextInsideFind.Text[i];
-							}
-							else if (TextInsideFind.Text[i] == insideFind.arrSymbols[2]) {
-								count++;
-
-								cout << TextInsideFind.Text[i - 5] << TextInsideFind.Text[i - 4] << TextInsideFind.Text[i - 3] << TextInsideFind.Text[i - 2] << TextInsideFind.Text[i - 1] << TextInsideFind.Text[i];
-							}
-							else if (TextInsideFind.Text[i] == insideFind.arrSymbols[3]) {
-								count++;
-
-								cout << TextInsideFind.Text[i - 5] << TextInsideFind.Text[i - 4] << TextInsideFind.Text[i - 3] << TextInsideFind.Text[i - 2] << TextInsideFind.Text[i - 1] << TextInsideFind.Text[i];
-							}
-							else if (TextInsideFind.Text[i] == insideFind.arrSymbols[4]) {
-								count++;
-
-								cout << TextInsideFind.Text[i - 5] << TextInsideFind.Text[i - 4] << TextInsideFind.Text[i - 3] << TextInsideFind.Text[i - 2] << TextInsideFind.Text[i - 1] << TextInsideFind.Text[i];
-							}
-
+						for (int i = 0; i <= 1999; i++) {
+							fileToRead.get(TextInsideFind.SymArr[i]);
 						}
+						
+						
 
 						cout << endl << endl << endl;
 						cout << "Numbers of special symbols inside your file is -> " << count;
