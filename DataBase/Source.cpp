@@ -1,7 +1,7 @@
-#define _CRT_SECURE_NO_WARNINGS
-
 #include "includes.h"
 
+
+//----------------------------------------------------------Classes to subwork with text--------------------------------------------------------------\\
 
 class ioClass { // special class to manipulate with input-output proccedures
 public:
@@ -60,13 +60,14 @@ private:
 		}
 	}
 };
+//----------------------------------------------------------------------------------------------------------------------------------\\
 
 
 int main() {
 	
 	while (true) {
 
-		string ArrMan[] = { "/wrt", "/brk", "/clo", "/help", "/read", "/cls" }; // initialization for actions with program
+		string ArrMan[] = { "/wrt", "/brk", "/clo", "/help", "/rd", "/cls" }; // initialization for actions with program
 		ioClass FirstL;
 
 		cout << "path: -> main" << endl << endl;
@@ -75,6 +76,9 @@ int main() {
 		cin >> FirstL.Command;
 		FirstL.ChSlash();
 
+
+
+		//----------------------------------------------------------WRT function--------------------------------------------------------------\\
 
 		if (FirstL.Command == ArrMan[0]) {
 			Get_CLS();
@@ -109,7 +113,6 @@ int main() {
 					FileWrite.open(pathEX);
 					if (FileWrite.is_open()) {
 
-						char symbol = ' ';
 
 						cout << endl << "enter your text" << endl;
 						cin.get();
@@ -130,7 +133,7 @@ int main() {
 					subclassName nameGener;
 
 					// algorith imagined in "name_gen.h"	
-					long nameFileUn = genNameUn();    // giving a name to txt file
+					long nameFileUn = genNameUn();			// giving a name to txt file
 					string nameEx = to_string(nameFileUn);
 					nameEx = nameEx + "_un";
 
@@ -175,13 +178,16 @@ int main() {
 			}
 		}
 
-		else if (FirstL.Command == ArrMan[4]) { // algorithm to function of read and find in file
+
+		//----------------------------------------------------------READ function--------------------------------------------------------------\\
+
+		else if (FirstL.Command == ArrMan[4]) {					// algorithm to function of read and find in file
 			Get_CLS();
 			ioClass SlineRd;
 
 			ifstream fileToRead;
 
-			string ComArray[] = { "/start", "/find", "/brk" }; // list of command
+			string ComArray[] = { "/start", "/find", "/brk" };	// list of command
 
 			while (true) {
 				cout << "Path: -> main -> read" << endl << endl;
@@ -225,7 +231,7 @@ int main() {
 					}
 				}
 
-				else if (SlineRd.Command == ComArray[1]) { // algorithm to find a symbols in file
+				else if (SlineRd.Command == ComArray[1]) {			// algorithm to find a special symbols in file
 					ioClass insideFind;
 					TextWork TextInsideFind;
 					Parcer ParceSpec;
@@ -268,7 +274,7 @@ int main() {
 			}
 		}
 
-		
+		//----------------------------------------------------------SUB functions--------------------------------------------------------------\\
 
 		else if (FirstL.Command == ArrMan[1]) {
 			Get_CLS();

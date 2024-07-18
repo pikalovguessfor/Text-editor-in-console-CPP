@@ -1,3 +1,5 @@
+//----------------------------------------------------------PARSER Class--------------------------------------------------------------\\
+
 #pragma once
 
 #include "includes.h"
@@ -10,7 +12,13 @@ public:
 		
 	int ParseFile(char arrSym[2000]) {
 
-		bool operation_stop = false;
+
+		if (_isThisDataForm(arrSym)) {
+			cout << endl << endl << "Correct 'data_find' format" << endl << endl;
+		}
+		else if (!_isThisDataForm(arrSym)) {
+			cout << endl << endl << "data format recommend to begin from special symbol" << endl << endl;
+		}
 
 
 		if (true) {
@@ -26,25 +34,24 @@ public:
 		}
 
 		return 0;
-		
 	}
 
 private:
 
-	bool _findSymTxt(char arrSym[2000]) {
+	// method to see 'is this correct'
+
+	bool _isThisDataForm(char arrSym[2000]) { 
 		
-		for (int i = 0; i <= 1999; i++) {
+		for (int i = 0; i <= 5; i++) {
+			
+			if (arrSym[0] == arrSymbolsSpec[i]) {
 
-			if (arrSym[i] == arrSymbolsSpec[i]) {
+
 				return true;
-			}
-
-			else {
-				return false;
 			}
 
 		}
 
+		return false;
 	}
-
 };
