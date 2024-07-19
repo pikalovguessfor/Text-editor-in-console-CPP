@@ -44,6 +44,7 @@ public:
 
 	}
 
+
 private:
 
 	bool FsymBool(string text) {

@@ -10,18 +10,19 @@ public:
 
 	const char arrSymbolsSpec[5] = { '#', '@', '&', '-', '>' };
 		
-	int ParseFile(char arrSym[2000]) {
+	void ParseFile(char arrSym[2000]) {
+		
+		bool start_pars = true;
 
 
-		if (_isThisDataForm(arrSym)) {
-			cout << endl << endl << "Correct 'data_find' format" << endl << endl;
-		}
-		else if (!_isThisDataForm(arrSym)) {
-			cout << endl << endl << "data format recommend to begin from special symbol" << endl << endl;
-		}
+		if (start_pars) {
 
-
-		if (true) {
+			if (_isThisDataForm(arrSym)) {
+				cout << endl << endl << "Correct 'data_find' format" << endl << endl;
+			}
+			else if (!_isThisDataForm(arrSym)) {
+				cout << endl << endl << "data format recommend to begin from special symbol" << endl << endl;
+			}
 
 			for (int i = 0; i <= 1999; i++) {
 				
@@ -32,8 +33,11 @@ public:
 				}
 			}
 		}
+		else {
+			cout << endl << endl << "Something went wrong with a parcer" << endl << endl;
+		}
 
-		return 0;
+		return;
 	}
 
 private:

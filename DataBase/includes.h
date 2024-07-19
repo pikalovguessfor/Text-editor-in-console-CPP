@@ -1,6 +1,5 @@
 #pragma once
 
-#define _CRT_SECURE_NO_WARNINGS
 
 //independent file for #include libraries
 
@@ -14,6 +13,3 @@
 #include "defs.h"
 #include "name_gen.h"
 #include "parcer.h"
-
-#include <conio.h> // windows depended lobrary
-#include <filesystem> // windows depended library
