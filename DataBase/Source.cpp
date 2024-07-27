@@ -235,7 +235,6 @@ int main() {
 				else if (SlineRd.Command == ComArray[1]) {			// algorithm to find a special symbols in file
 					ioClass insideFind;
 					TextWork TextInsideFind;
-					Parcer ParceSpec;
 
 					string nameFileF = "Page/";
 					string nameFileS;
@@ -257,7 +256,7 @@ int main() {
 							fileToRead.get(TextInsideFind.SymArr[i]);
 						}
 						
-						ParceSpec.ParseFile(TextInsideFind.SymArr);
+						parcer::ParseFile(TextInsideFind.SymArr);
 						
 						fileToRead.close();
 					}
