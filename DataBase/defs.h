@@ -1,8 +1,8 @@
 #pragma once
+
 #include "includes.h"
+
 using namespace std;
-
-
 
 void Get_Help() { // function to get help with commands
 	cout << endl << endl << endl;

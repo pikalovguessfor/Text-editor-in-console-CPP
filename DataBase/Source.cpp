@@ -1,20 +1,17 @@
 #include "includes.h"
 
-
 //----------------------------------------------------------Classes to subwork with text--------------------------------------------------------------\\
 
 class ioClass { // special class to manipulate with input-output proccedures
+
 public:
 	
 	const char arrSymbols[5] = { '#', '@', '&', '-', '>' };
 
 	string text = "";
-	
 	string Command = "";
 	string input = "";
 	
-
-
 	void ChSlash() { //check '/' symbol in command
 		
 		if (Command[0] != '/') {
@@ -26,9 +23,11 @@ public:
 };
 
 class TextWork {
+
 public:
 
 	string Text; //class to work with text in "find" function
+
 	char SymArr[2000];
 	
 	int TextFSym(string text) {
@@ -65,7 +64,7 @@ private:
 
 
 int main() {
-	
+
 	while (true) {
 
 		string ArrMan[] = { "/wrt", "/brk", "/clo", "/help", "/rd", "/cls" }; // initialization for actions with program
@@ -76,9 +75,7 @@ int main() {
 
 		cin >> FirstL.Command;
 		FirstL.ChSlash();
-
-
-
+		
 		//----------------------------------------------------------WRT function--------------------------------------------------------------\\
 
 		if (FirstL.Command == ArrMan[0]) {
@@ -86,9 +83,8 @@ int main() {
 
 			while (true) {
 
-				ioClass SecondL;
-
-				ofstream FileWrite;
+				ioClass SecondL; // declaration of classes
+				ofstream FileWrite; //
 
 				string arrWrtCom[] = { "/path", "/unpath", "/brk" };
 
@@ -98,7 +94,6 @@ int main() {
 				SecondL.ChSlash(); // check correct of 'command'
 
 				if (SecondL.Command == arrWrtCom[0]) { // write inside file with path
-
 					ioClass insidePathWrt_;
 					TextWork TextPath;
 
@@ -114,15 +109,12 @@ int main() {
 					FileWrite.open(pathEX);
 					if (FileWrite.is_open()) {
 
-
 						cout << endl << "enter your text" << endl;
 						cin.get();
 						getline(cin, TextPath.Text);
 
 						TextPath.TextFSym(TextPath.Text);
-
 						FileWrite << TextPath.Text;
-
 						FileWrite.close();
 					}
 					else {
@@ -132,6 +124,9 @@ int main() {
 
 				else if (SecondL.Command == arrWrtCom[1]) { //function to write without path
 					subclassName nameGener;
+					ioClass insideUnpathWrt;
+					TextWork TextUnpath;
+
 
 					// algorith imagined in "name_gen.h"	
 					long nameFileUn = genNameUn();			// giving a name to txt file
@@ -140,17 +135,16 @@ int main() {
 
 					string FileName = (nameEx + ".txt");
 					FileName = ("Page/" + FileName);       // filename for unpath fuction
-					cout << endl << FileName << "<- name of file" << endl;
 					//
 
-					ioClass insideUnpathWrt;
-					TextWork TextUnpath;
+
+					cout << endl << FileName << "<- name of file" << endl;
 					
 					FileWrite.open(FileName);
 
 					if (FileWrite.is_open()) {
 
-						TextUnpath.Text;                   //var text
+						TextUnpath.Text;                   //text
 
 						cout << endl << endl;
 						cout << "enter your text";
@@ -160,16 +154,13 @@ int main() {
 						getline(cin, TextUnpath.Text);
 
 						TextUnpath.TextFSym(TextUnpath.Text);
-						
 						FileWrite << TextUnpath.Text;
-
-
 						FileWrite.close();
 					}
 					else {
-						cout << endl << endl <<endl;
+						cout << endl << endl;
 						cout << "cant open file";
-						cout << endl << endl << endl;
+						cout << endl << endl;
 					}
 				}
 
@@ -199,7 +190,6 @@ int main() {
 
 				if (SlineRd.Command == ComArray[0]) {
 					ioClass insideRead;
-
 					TextWork TextINSRead;
 
 					string nameFileF = "Page/";
